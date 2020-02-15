@@ -97,7 +97,7 @@ void TrafficLight::cycleThroughPhases()
                 // send update to the message queue using move semantics:
                 // tmp copy to move
                 TrafficLightPhase phase = _currentPhase;
-                std::future _ftr = std::async(std::launch::async, &MessageQueue<TrafficLightPhase>::send, _msgQueue, std::move(phase));
+                std::future<void> _ftr = std::async(std::launch::async, &MessageQueue<TrafficLightPhase>::send, _msgQueue, std::move(phase));
 
                 randomSeconds = dist(range);
                 start = std::chrono::high_resolution_clock::now();
